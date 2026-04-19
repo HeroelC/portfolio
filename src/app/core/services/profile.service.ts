@@ -8,7 +8,7 @@ export class ProfileService {
     handle:    'heroelc',
     role:      'Frontend Developer Angular',
     avatarUrl: 'https://avatars.githubusercontent.com/u/32722393?v=4',
-    bannerUrl: '/imgs/banner.jpg',
+    bannerUrl:  window.location.origin + '/portfolio/imgs/banner.jpg',
     verified:  true,
     showActions: false,
     links: [
