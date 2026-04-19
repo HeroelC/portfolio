@@ -1,0 +1,40 @@
+<div class="about">
+  <div class="about__bio">
+    <p>
+      Me recibí de Técnico Universitario en Desarrollo de Aplicaciones Informáticas (TUDAI)
+      en la Universidad Nacional del Centro de la Provincia de Buenos Aires (UNICEN),
+      cursando entre 2018 y 2020.
+    </p>
+    <p>
+      Comencé mi camino profesional como Frontend Developer en USINA, trabajando
+      con Angular, Ionic y tecnologías web. Pasé por empresas como Technisys desarrollando
+      apps móviles para un banco argentino, y por Acid Labs construyendo soluciones para
+      una fintech chilena y una aerolínea. En paralelo, en 2021 dicté una materia online
+      en la Universidad Católica de Cuyo, enseñando fundamentos de programación,
+      JavaScript y Angular desde cero.
+    </p>
+    <p>
+      Desde abril de 2022 estoy en Xcale Consulting, donde hago desarrollo frontend con
+      Angular, migraciones de versiones, configuración de infraestructura en AWS y
+      automatización con pipelines CI/CD.
+    </p>
+<p>
+  Fuera del trabajo, sigo aprendiendo: estuve construyendo proyectos con Node.js y
+  NestJS. Actualmente desarrollé
+  <fs-button [variant]="'link'" [size]="'md'" [disabled]="false" [loading]="false" [label]="'&#64;heroelc/fsociety'" [fullWidth]="false" (fsClick)="openNpmPage()"></fs-button>,
+  una librería de componentes Angular open source con sistema de tokens de diseño, publicada en npm.
+  En paralelo también estoy mejorando mis habilidades en el backend con cursos de Java.
+</p>
+
+
+  </div>
+
+  <div class="about__education">
+    <h3 class="about__section-title">Formación</h3>
+    <fs-experience-card
+      [experience]="education"
+      variant="full"
+      [timeline]="false"
+    />
+  </div>
+</div>

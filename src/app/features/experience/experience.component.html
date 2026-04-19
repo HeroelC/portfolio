@@ -1,0 +1,8 @@
+@for (exp of experiences(); track exp.company; let last = $last) {
+  <fs-experience-card
+    [experience]="exp"
+    variant="full"
+    [timeline]="false"
+    [timelineLast]="last"
+  />
+}

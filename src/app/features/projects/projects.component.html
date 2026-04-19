@@ -1,0 +1,48 @@
+<div class="projects">
+  @for (project of projects(); track project.title) {
+    <div class="project-card">
+
+      <div class="project-card__header">
+        <div class="project-card__logo">{{ project.logo }}</div>
+        <span class="project-card__status" [class]="'project-card__status--' + project.status.replace(' ', '-')">
+          {{ project.status }}
+        </span>
+      </div>
+
+      <p class="project-card__title">{{ project.title }}</p>
+      <p class="project-card__desc">{{ project.description }}</p>
+
+      <div class="project-card__divider"></div>
+
+      <div class="project-card__badges">
+        @for (badge of project.badges; track badge.label) {
+          <fs-badge [color]="badge.color" size="sm">{{ badge.label }}</fs-badge>
+        }
+      </div>
+
+      <div class="project-card__stats">
+        @for (stat of project.stats; track stat.value) {
+          <span class="project-card__stat">
+            {{ stat.value }} <span>{{ stat.label }}</span>
+          </span>
+        }
+      </div>
+
+      <div class="project-card__footer">
+        @if (project.links.github) {
+          <a class="btn btn--outline" [href]="project.links.github" target="_blank">GitHub</a>
+        }
+        @if (project.links.storybook) {
+          <a class="btn btn--outline" [href]="project.links.storybook" target="_blank">Storybook</a>
+        }
+        @if (project.links.npm) {
+          <a class="btn btn--primary" [href]="project.links.npm" target="_blank">npm</a>
+        }
+        @if (project.links.demo) {
+          <a class="btn btn--primary" [href]="project.links.demo" target="_blank">Demo</a>
+        }
+      </div>
+
+    </div>
+  }
+</div>

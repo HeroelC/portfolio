@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { FsProfileCardComponent, FsTabsComponent } from '@heroelc/fsociety';
+import { ProjectsComponent } from './features/projects/projects.component';
+import { AboutComponent } from './features/about/about.component';
+import { ExperienceComponent } from './features/experience/experience.component';
+import { ProfileService } from './core/services/profile.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [
+    FsProfileCardComponent,
+    FsTabsComponent,
+    ProjectsComponent,
+    AboutComponent,
+    ExperienceComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'portfolio';
+  private profileService = inject(ProfileService);
+
+  profile   = this.profileService.profile;
+  activeTab = signal('projects');
+
+  tabs = [
+    { id: 'projects',   label: 'Proyectos'   },
+    { id: 'experience', label: 'Experiencia' },
+    { id: 'about',      label: 'Sobre mí'    },
+  ];
 }
