@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { ProjectsService, Project } from '../../core/services/projects.service';
-import { FsBadgeComponent } from '@heroelc/fsociety';
+import { ProjectsService } from '../../core/services/projects.service';
+import { FsBadgeComponent, FsCardComponent } from '@heroelc/fsociety';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [FsBadgeComponent],
+  imports: [FsBadgeComponent, FsCardComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
