@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { FsProfileBadge } from '@heroelc/fsociety';
+import { UI_ICON, withTechIcons } from '../icons';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -12,18 +13,17 @@ export class ProfileService {
     verified:  true,
     showActions: false,
     links: [
-      { label: 'github.com/heroelc',      url: 'https://github.com/heroelc', imgUrl: 'https://api.iconify.design/mdi:github.svg?color=%23888888' },
-      { label: '-', encodedEmail: 'aGVyb2VsamNhcnBpbmV0dGlAZ21haWwuY29t', imgUrl: 'https://api.iconify.design/material-symbols:mail.svg?color=%23888888' },
-      { label: 'Tandil, Buenos Aires', imgUrl: 'https://api.iconify.design/material-symbols:location-on.svg?color=%23888888' },
+      { label: 'github.com/heroelc',      url: 'https://github.com/heroelc', imgUrl: UI_ICON.github,   imgAlt: 'GitHub'   },
+      { label: '-', encodedEmail: 'aGVyb2VsamNhcnBpbmV0dGlAZ21haWwuY29t',    imgUrl: UI_ICON.mail,     imgAlt: 'Email'    },
+      { label: 'Tandil, Buenos Aires',                                       imgUrl: UI_ICON.location, imgAlt: 'Location' },
     ],
-    badges: [
-      { label: 'Angular',    color: 'danger' },
-      { label: 'TypeScript', color: 'primary' },
-      { label: 'RxJS',       color: 'tertiary' },
+    badges: withTechIcons([
+      { label: 'Angular',          color: 'danger'    },
+      { label: 'TypeScript',       color: 'primary'   },
+      { label: 'RxJS',             color: 'tertiary'  },
       { label: 'Angular Material', color: 'neutral'   },
-      { label: 'AWS',        color: 'secondary'  },
-
-    ] as FsProfileBadge[],
+      { label: 'AWS',              color: 'secondary' },
+    ]) as FsProfileBadge[],
     stats: [
       { value: '6+', label: 'años exp.'  },
       { value: '1', label: 'proyectos'  },

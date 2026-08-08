@@ -1,9 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { FsExperienceCard } from '@heroelc/fsociety';
+import { withTechIcons } from '../icons';
 
-@Injectable({ providedIn: 'root' })
-export class ExperienceService {
-  experiences = signal<FsExperienceCard[]>([
+const EXPERIENCES: FsExperienceCard[] = [
     {
       company:   'Xcale Consulting',
       role:      'Frontend Developer',
@@ -123,5 +122,15 @@ export class ExperienceService {
         { label: 'Bootstrap',  color: 'secondary'},
       ],
     },
-  ]);
+];
+
+@Injectable({ providedIn: 'root' })
+export class ExperienceService {
+  // Badge icons are resolved from the label, so a new badge never needs a URL.
+  experiences = signal<FsExperienceCard[]>(
+    EXPERIENCES.map((experience) => ({
+      ...experience,
+      badges: withTechIcons(experience.badges ?? []),
+    })),
+  );
 }
