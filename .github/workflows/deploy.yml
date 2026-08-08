@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-run a deploy from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+# Least privilege: id-token is what lets deploy-pages authenticate.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys publish at once, but don't cancel one mid-publish
+# either — a half-finished deploy is worse than a queued one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # `npm ci` would be the reproducible choice, but it requires a lockfile
+      # and package-lock.json is gitignored in this repo, so there is none to
+      # install from. Until that changes, CI resolves the semver ranges fresh
+      # on every run.
+      - name: Install dependencies
+        run: npm install
+
+      # Matches the base href the site is served under: heroelc.github.io/portfolio/
+      - name: Build
+        run: npm run build -- --base-href /portfolio/
+
+      # The router is configured, so a deep link must not 404 on a static host.
+      # Serving index.html for unknown paths lets Angular resolve the route.
+      - name: Add SPA fallback
+        run: cp dist/portfolio/browser/index.html dist/portfolio/browser/404.html
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/portfolio/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
