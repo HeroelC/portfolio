@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@heroelc/fsociety/styles/tokens';
-@use '@heroelc/fsociety/styles/mixins';
+@use '@heroelc/fsociety/styles';
 
 .fs-exp {
   --fs-exp-radius: 0 !important;
@@ -9,5 +8,8 @@
 body{
   max-width: 724px;
   margin: 0 auto;
-  background-color: #0D1117;
+  // Must follow the tokens, not a fixed hex — otherwise the theme toggle would
+  // leave the page background stuck on the dark value.
+  background-color: var(--fs-color-bg);
+  color: var(--fs-color-text-primary);
 }
