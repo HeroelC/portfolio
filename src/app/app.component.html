@@ -1,4 +1,12 @@
 <main class="pt-4 px-2">
+  <div class="flex-end pb-2">
+    <fs-switch
+      label="Modo oscuro"
+      [ngModel]="theme.isDark()"
+      (ngModelChange)="theme.setDark($event)"
+    />
+  </div>
+
   <fs-profile-card
     [name]="profile().name"
     [handle]="profile().handle"

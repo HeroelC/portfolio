@@ -1,11 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <title>Portfolio</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.png">
+  <script>
+    // Applies the stored theme before Angular boots, so reloading in light mode
+    // never flashes the dark palette. Storage key must match ThemeService.
+    try {
+      var stored = localStorage.getItem('portfolio-theme');
+      document.documentElement.setAttribute('data-theme', stored === 'light' ? 'light' : 'dark');
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <app-root></app-root>
