@@ -18,6 +18,8 @@ export const UI_ICON = {
   github: icon('simple-icons:github'),
   mail: icon('material-symbols:mail'),
   location: icon('material-symbols:location-on'),
+  darkMode: icon('material-symbols:dark-mode'),
+  lightMode: icon('material-symbols:light-mode'),
 } as const;
 
 /**

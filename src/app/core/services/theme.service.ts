@@ -16,7 +16,7 @@ export class ThemeService {
 
   readonly theme = this._theme.asReadonly();
 
-  /** `<fs-switch>` speaks boolean through ControlValueAccessor. */
+  /** Boolean view of the theme, for controls that toggle rather than pick. */
   readonly isDark = computed(() => this._theme() === 'dark');
 
   constructor() {

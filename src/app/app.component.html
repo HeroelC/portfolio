@@ -1,24 +1,28 @@
 <main class="pt-4 px-2">
-  <div class="flex-end pb-2">
-    <fs-switch
-      label="Modo oscuro"
-      [ngModel]="theme.isDark()"
-      (ngModelChange)="theme.setDark($event)"
+  <div class="profile">
+    <button
+      type="button"
+      class="theme-toggle"
+      [attr.aria-label]="themeToggleLabel()"
+      [attr.aria-pressed]="theme.isDark()"
+      (click)="theme.toggle()"
+    >
+      <img class="theme-toggle__icon" [src]="themeToggleIcon()" alt="" aria-hidden="true" />
+    </button>
+
+    <fs-profile-card
+      [name]="profile().name"
+      [handle]="profile().handle"
+      [role]="profile().role"
+      [avatarUrl]="profile().avatarUrl"
+      [bannerUrl]="profile().bannerUrl"
+      [verified]="profile().verified"
+      [showActions]="profile().showActions"
+      [links]="profile().links"
+      [badges]="profile().badges"
+      [stats]="profile().stats"
     />
   </div>
-
-  <fs-profile-card
-    [name]="profile().name"
-    [handle]="profile().handle"
-    [role]="profile().role"
-    [avatarUrl]="profile().avatarUrl"
-    [bannerUrl]="profile().bannerUrl"
-    [verified]="profile().verified"
-    [showActions]="profile().showActions"
-    [links]="profile().links"
-    [badges]="profile().badges"
-    [stats]="profile().stats"
-  />
 
   <div class="pt-4">
   <fs-tabs

@@ -1,0 +1,45 @@
+.profile {
+  position: relative;
+}
+
+// Sits over the banner photo, so it cannot borrow the theme surface colors:
+// the button carries its own translucent dark chip and a forced-white icon,
+// which stays legible over any image in either theme.
+.theme-toggle {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.45);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: rgb(0 0 0 / 0.65);
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fs-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.theme-toggle__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  // Iconify ships the glyph as currentColor, which resolves to black inside an
+  // <img>. Inverting is what turns it white against the dark chip.
+  filter: invert(1);
+}

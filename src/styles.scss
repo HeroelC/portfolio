@@ -5,6 +5,17 @@
   --fs-exp-radius: 0 !important;
 }
 
+// The design system fixes the profile banner at 180px. That reads well on a
+// narrow screen, but once the card reaches its 724px cap the crop turns into a
+// letterbox and the photo loses its subject. Give it height back on wide
+// viewports. Scoped through the host element so it outranks the component
+// stylesheet, which Angular injects after this file.
+@media (min-width: 640px) {
+  fs-profile-card .fs-profile__banner {
+    height: 260px;
+  }
+}
+
 body{
   max-width: 724px;
   margin: 0 auto;
