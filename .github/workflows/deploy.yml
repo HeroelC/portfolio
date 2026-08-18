@@ -35,9 +35,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Matches the base href the site is served under: heroelc.github.io/portfolio/
+      # The custom domain (public/CNAME) serves the site from the root, not from
+      # a /portfolio/ subpath, so the base href has to be / or every asset 404s.
       - name: Build
-        run: npm run build -- --base-href /portfolio/
+        run: npm run build -- --base-href /
 
       # The router is configured, so a deep link must not 404 on a static host.
       # Serving index.html for unknown paths lets Angular resolve the route.
